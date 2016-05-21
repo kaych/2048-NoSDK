@@ -61,7 +61,42 @@
   [super viewDidLoad];
   self.navigationController.navigationBar.tintColor = [GSTATE scoreBoardColor];
   //    Do any additional setup after loading the view.
-  strcpy(0,"This is a bad bug");
+    
+    BOOL afterScreenUpdates = YES;
+    
+    
+    UIScreen *mainScreen = [UIScreen mainScreen];
+    CGSize screenSize = mainScreen.bounds.size;
+    
+//    UIView *snapshotView = [UIWindow snapshotViewAfterScreenUpdates:YES];
+//    UIImage *snapshotImage = [self imageFromView:snapshotView];
+
+//    UIImage *myImage = UIGraphicsGetImageFromCurrentImageContext();
+////    UIView *snapshotView = [mainScreen snapshotViewAfterScreenUpdates:afterScreenUpdates];
+//    UIGraphicsBeginImageContextWithOptions(screenSize, YES, 0);
+////    [snapshotView drawViewHierarchyInRect:snapshotView.bounds afterScreenUpdates:afterScreenUpdates];
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+////        [window drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:NO];
+        UIView *windowSnapshot = [window snapshotViewAfterScreenUpdates:afterScreenUpdates];
+//        windowSnapshot drawViewHierarchyInRect:<#(CGRect)#> afterScreenUpdates:<#(BOOL)#>
+////        UIView *rootViewControllerSnapshot = [window.rootViewController.view snapshotViewAfterScreenUpdates:afterScreenUpdates];
+////        UIView *snapShotView = [window snapshotViewAfterScreenUpdates:afterScreenUpdates];
+//            CGContextRef context = UIGraphicsGetCurrentContext();
+//        CALayer *windowLayer = [window layer];
+//        [windowLayer drawInContext:context];
+        [windowSnapshot drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:YES];
+}
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSString *uuidString = [[NSUUID UUID] UUIDString];
+    NSString *filename = [NSString stringWithFormat:@"/Library/Caches/screencap-%0d-%@.jpg", 1, uuidString];
+    //    NSLog(@"Vending out temp filename: %@", filename);
+    NSString *outputPath = [NSHomeDirectory() stringByAppendingPathComponent:filename];
+    NSData *jpgRepresentation = UIImageJPEGRepresentation(image, 0.9);
+    BOOL success = [jpgRepresentation writeToFile:outputPath atomically:YES];
+    NSLog(@"Saved image to file %@: %d", outputPath, success);
 
 }
 
