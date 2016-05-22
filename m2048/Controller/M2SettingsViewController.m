@@ -19,6 +19,7 @@
   NSArray *_options;
   NSArray *_optionSelections;
   NSArray *_optionsNotes;
+    UIView * _snapshotView;
 }
 
 
@@ -62,33 +63,60 @@
   self.navigationController.navigationBar.tintColor = [GSTATE scoreBoardColor];
   //    Do any additional setup after loading the view.
     
-    BOOL afterScreenUpdates = YES;
-    
-    
+//    BOOL afterScreenUpdates = YES;
     UIScreen *mainScreen = [UIScreen mainScreen];
     CGSize screenSize = mainScreen.bounds.size;
+    
+//    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    
+    
+
     
 //    UIView *snapshotView = [UIWindow snapshotViewAfterScreenUpdates:YES];
 //    UIImage *snapshotImage = [self imageFromView:snapshotView];
 
 //    UIImage *myImage = UIGraphicsGetImageFromCurrentImageContext();
 ////    UIView *snapshotView = [mainScreen snapshotViewAfterScreenUpdates:afterScreenUpdates];
-//    UIGraphicsBeginImageContextWithOptions(screenSize, YES, 0);
+    UIGraphicsBeginImageContextWithOptions(screenSize, YES, 0);
+//    
+//   UIView *keyWindowSnapshotView = [keyWindow snapshotViewAfterScreenUpdates:YES];
+//    
+//    UIView *windowSnapshot = [[keyWindow rootViewController].view snapshotViewAfterScreenUpdates:NO];
+//    
+//    [keyWindow addSubview:keyWindowSnapshotView];
+//
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    [keyWindowSnapshotView drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:YES];
+////    [keyWindow.layer renderInContext:context];
+
 ////    [snapshotView drawViewHierarchyInRect:snapshotView.bounds afterScreenUpdates:afterScreenUpdates];
     for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+//            [window.layer renderInContext:context];
 ////        [window drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:NO];
-        UIView *windowSnapshot = [window snapshotViewAfterScreenUpdates:afterScreenUpdates];
+//        UIView *windowSnapshot = [window snapshotViewAfterScreenUpdates:NO];
 //        windowSnapshot drawViewHierarchyInRect:<#(CGRect)#> afterScreenUpdates:<#(BOOL)#>
 ////        UIView *rootViewControllerSnapshot = [window.rootViewController.view snapshotViewAfterScreenUpdates:afterScreenUpdates];
 ////        UIView *snapShotView = [window snapshotViewAfterScreenUpdates:afterScreenUpdates];
-//            CGContextRef context = UIGraphicsGetCurrentContext();
-//        CALayer *windowLayer = [window layer];
-//        [windowLayer drawInContext:context];
-        [windowSnapshot drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:YES];
+            CGContextRef context = UIGraphicsGetCurrentContext();
+        CALayer *windowLayer = window.layer;
+        [windowLayer drawInContext:context];
+//        [windowSnapshot drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:NO];
 }
+    
+    if(_snapshotView) {
+        [_snapshotView drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:NO];
+    }
+    
+        _snapshotView = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
+//    [[self view] addSubview:screenView];
+//    [screenView drawViewHierarchyInRect:CGRectMake(0, 0, screenSize.width, screenSize.height) afterScreenUpdates:YES];
+    
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    // Generate the new view here
+    _snapshotView =[[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
     
     NSString *uuidString = [[NSUUID UUID] UUIDString];
     NSString *filename = [NSString stringWithFormat:@"/Library/Caches/screencap-%0d-%@.jpg", 1, uuidString];

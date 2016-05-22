@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		070C6337BF4857156C7BCF17 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B27F5D322EAE5641810723FE /* BuddyBuildSDK.framework */; };
 		101E326B3197F9865BFE5EE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA8A9227ED91C3C0165B98A /* SystemConfiguration.framework */; };
+		1F3613BE1CF1537C00D94136 /* UIWindow+BBDrawWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3613BD1CF1537C00D94136 /* UIWindow+BBDrawWindow.m */; };
 		1FC7156C1CF0D7E600988C69 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FC7156B1CF0D7E600988C69 /* CoreMedia.framework */; };
 		1FC7156E1CF0D7F000988C69 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FC7156D1CF0D7F000988C69 /* AVFoundation.framework */; };
 		2443DC5618D662CA00C920C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2443DC5518D662CA00C920C1 /* Foundation.framework */; };
@@ -58,6 +59,8 @@
 		0318D9174408089C692CC1B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0CA8A9227ED91C3C0165B98A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1DCBE62BCAA1EF9E06F56857 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		1F3613BC1CF1537C00D94136 /* UIWindow+BBDrawWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+BBDrawWindow.h"; sourceTree = "<group>"; };
+		1F3613BD1CF1537C00D94136 /* UIWindow+BBDrawWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+BBDrawWindow.m"; sourceTree = "<group>"; };
 		1FC7156B1CF0D7E600988C69 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		1FC7156D1CF0D7F000988C69 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2443DC5218D662CA00C920C1 /* m2048.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = m2048.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +188,8 @@
 		2443DC5D18D662CA00C920C1 /* m2048 */ = {
 			isa = PBXGroup;
 			children = (
+				1F3613BC1CF1537C00D94136 /* UIWindow+BBDrawWindow.h */,
+				1F3613BD1CF1537C00D94136 /* UIWindow+BBDrawWindow.m */,
 				2443DC6618D662CA00C920C1 /* M2AppDelegate.h */,
 				2443DC6718D662CA00C920C1 /* M2AppDelegate.m */,
 				2443DC6918D662CA00C920C1 /* Main.storyboard */,
@@ -412,6 +417,7 @@
 				2443DCA318D6649500C920C1 /* M2Theme.m in Sources */,
 				24C4517318E140AE0001FCFD /* M2SettingsDetailViewController.m in Sources */,
 				24C4516418DABABE0001FCFD /* M2GlobalState.m in Sources */,
+				1F3613BE1CF1537C00D94136 /* UIWindow+BBDrawWindow.m in Sources */,
 				2443DC6818D662CA00C920C1 /* M2AppDelegate.m in Sources */,
 				2443DC9B18D663FC00C920C1 /* M2GameManager.m in Sources */,
 			);
